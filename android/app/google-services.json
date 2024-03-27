@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "694735610840",
+    "project_id": "vartameet-5b58b",
+    "storage_bucket": "vartameet-5b58b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694735610840:android:8492344cff45307b5108ad",
+        "android_client_info": {
+          "package_name": "com.example.vartameet_computer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsckRgWibeWwrz5z8Twzvt4OgF3usjHvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
