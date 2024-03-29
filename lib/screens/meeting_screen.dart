@@ -1,6 +1,5 @@
 // import 'dart:js';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:newtest/resources/jitsi_meet_methods.dart';
 import 'package:newtest/util/home_meeting_button.dart';

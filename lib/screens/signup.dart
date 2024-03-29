@@ -52,8 +52,8 @@ class _SignupState extends State<Signup> {
                         });
                       },
                       child: tohide
-                          ? Icon(Icons.lock_rounded)
-                          : Icon(Icons.lock_open_rounded),
+                          ? Icon(Icons.visibility_off_rounded)
+                          : Icon(Icons.visibility_rounded),
                     ),
                     border: outlineInputBorder)),
           ),

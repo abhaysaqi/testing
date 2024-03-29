@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:jitsi_meet_fix/jitsi_meet.dart';
+import 'package:jitsi_meet_flutter_sdk/jitsi_meet_flutter_sdk.dart';
 import 'package:newtest/resources/auth_methods.dart';
 import 'package:newtest/resources/jitsi_meet_methods.dart';
-// import 'package:newtest/screens/meeting_screen.dart';
 import 'package:newtest/util/colors.dart';
 import 'package:newtest/util/meeting_option.dart';
 
@@ -31,19 +29,31 @@ class _Video_call_screenState extends State<Video_call_screen> {
     super.initState();
   }
 
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   meeting_id_controller.dispose();
+  //   name_controller.dispose();
+  //   JitsiMeet.removeAllListeners();
+  //   // JitsiMeet().closeChat();
+  // }
   @override
-  void dispose() {
-    super.dispose();
-    meeting_id_controller.dispose();
-    name_controller.dispose();
-    JitsiMeet.removeAllListeners();
-  }
+void dispose() {
+  super.dispose();
+  meeting_id_controller.dispose();
+  name_controller.dispose();
+  // JitsiMeet.removeAllListeners();
+  // JitsiMeet.endMeeting();
+  // You can uncomment the following line if you want to close the chat as well
+  // JitsiMeet.closeChat();
+}
+
 
   _join_meeting() {
     _jitsi_meet_methods.Create_new_meeting(
         roomname: meeting_id_controller.text,
         Audio_muted: Audio_muted,
-        Video_muted: Video_muted, 
+        Video_muted: Video_muted,
         username: name_controller.text);
   }
 

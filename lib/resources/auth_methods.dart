@@ -26,64 +26,58 @@ final class Auth_methods {
     }
   }
 
-  Signup_with_Emai_Pass(BuildContext context, String email, String password) async {
-  if (email.isEmpty || password.isEmpty) {
-    Custom_alert(context, "Fill Mandatory Fields");
-  } else {
-    UserCredential? userCredential;
-    try {
-      userCredential = await _auth.createUserWithEmailAndPassword(
-        email: email, 
-        password: password
-      );
-      User? user = userCredential.user;
-      if (user != null) {
-        Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+  Signup_with_Emai_Pass(
+      BuildContext context, String email, String password) async {
+    if (email.isEmpty || password.isEmpty) {
+      Custom_alert(context, "Fill Mandatory Fields");
+    } else {
+      UserCredential? userCredential;
+      try {
+        userCredential = await _auth.createUserWithEmailAndPassword(
+            email: email, password: password);
+        User? user = userCredential.user;
+        if (user != null) {
+          Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+        }
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          Custom_alert(context, 'The password provided is too weak.');
+        } else if (e.code == 'email-already-in-use') {
+          Custom_alert(context, 'The account already exists for that email.');
+        } else if (e.code == 'invalid-email') {
+          Custom_alert(context, 'The email address is not valid.');
+        } else {
+          Custom_alert(context, e.message.toString());
+        }
+      } catch (e) {
+        Custom_alert(context, e.toString());
       }
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        Custom_alert(context, 'The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        Custom_alert(context, 'The account already exists for that email.');
-      } else if (e.code == 'invalid-email') {
-        Custom_alert(context, 'The email address is not valid.');
-      } else {
-        Custom_alert(context, e.message.toString());
-      }
-    } catch (e) {
-      print(e);
     }
   }
-}
 
   Signin_with_Emai_Pass(
       BuildContext context, String email, String password) async {
     if (email.isEmpty || password.isEmpty) {
-    Custom_alert(context, "Fill Mandatory Fields");
-  } else {
-    UserCredential? userCredential;
-    try {
+      Custom_alert(context, "Fill Mandatory Fields");
+    } else {
+      UserCredential? userCredential;
+      try {
         userCredential = await _auth.signInWithEmailAndPassword(
-        email: email, 
-        password: password
-      );
-      User? user = userCredential.user;
-      if (user != null) {
-        Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+            email: email, password: password);
+        User? user = userCredential.user;
+        if (user != null) {
+          Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+        }
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'email-already-in-use') {
+          Custom_alert(context, 'The account already exists for that email.');
+        } else {
+          // Handle other exceptions
+          Custom_alert(context, e.message.toString());
+        }
+      } catch (e) {
+        Custom_alert(context, e.toString());
       }
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        Custom_alert(context, 'The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        Custom_alert(context, 'The account already exists for that email.');
-      } else if (e.code == 'invalid-email') {
-        Custom_alert(context, 'The email address is not valid.');
-      } else {
-        Custom_alert(context, e.message.toString());
-      }
-    } catch (e) {
-      print(e);
     }
   }
-}
 }
