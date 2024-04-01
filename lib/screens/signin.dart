@@ -61,6 +61,8 @@ class _SigninState extends State<Signin> {
                     context,
                     emailController.text.toString(),
                     passController.text.toString());
+                emailController.clear();
+                passController.clear();
                 _toggleLoading();
               }),
           SizedBox(

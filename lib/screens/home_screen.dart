@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:newtest/resources/auth_methods.dart';
 // import 'package:newtest/util/home_meeting_button.dart';
 import 'package:newtest/screens/meeting_history_screen.dart';
 import 'package:newtest/screens/meeting_screen.dart';
 import 'package:newtest/util/colors.dart';
+import 'package:newtest/util/ui_helper.dart';
 
 class Home_screen extends StatefulWidget {
   const Home_screen({Key? key}) : super(key: key);
@@ -20,11 +22,14 @@ class _Home_screenState extends State<Home_screen> {
   }
 
   List<Widget> pages = [
-     Meeting_screen(),
+    Meeting_screen(),
     const Meeting_history(),
     Text("Contacts"),
-    Text("Settings")
-
+    Ui_helper.Custom_btn(
+        text: "Log-Out",
+        onpressed: () {
+          Auth_methods().Sign_out();
+        })
   ];
 
   @override

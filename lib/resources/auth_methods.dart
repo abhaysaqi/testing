@@ -1,24 +1,36 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newtest/util/snackbar.dart';
+import 'package:newtest/util/ui_helper.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
+ final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 final class Auth_methods {
   User get user => _auth.currentUser!;
   Signin_with_Google(BuildContext context) async {
+    bool response = false;
     try {
       final GoogleSignInAccount? google_user = await GoogleSignIn().signIn();
       final GoogleSignInAuthentication? google_auth =
           await google_user?.authentication;
       final credential = GoogleAuthProvider.credential(
-          accessToken: google_auth?.accessToken,
-          idToken: google_auth?.accessToken);
+          accessToken: google_auth?.accessToken, idToken: google_auth?.idToken);
       UserCredential userCredential =
           await _auth.signInWithCredential(credential);
       User? user = userCredential.user;
       if (user != null) {
+        if (userCredential.additionalUserInfo!.isNewUser){
+          await _firestore.collection('users').doc(user.uid).set({
+            'username': user.displayName,
+            'uid': user.uid,
+            'profilePhoto': user.photoURL,
+          });
+        }
+        response = true;
+        Custom_alert(context, "Successfully signed in!");
         Navigator.pushReplacementNamed(context, '/home');
       }
     } on FirebaseAuthException catch (ex) {
@@ -78,6 +90,14 @@ final class Auth_methods {
       } catch (e) {
         Custom_alert(context, e.toString());
       }
+    }
+  }
+
+  void Sign_out() async {
+    try {
+      _auth.signOut();
+    } catch (e) {
+      print(e);
     }
   }
 }

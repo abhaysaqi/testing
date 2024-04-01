@@ -75,7 +75,7 @@ class Jitsi_meet_methods  {
       //   "unsaferoomwarning.enabled": false
       // },
       );
-
+      _firestore_methods.Add_meeting_history(roomname);
       await jitsiMeet.join(options);
     } catch (e) {
       print("Error starting meeting: $e");

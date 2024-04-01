@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 
-Custom_alert(BuildContext context, String text) {
+Custom_alert(BuildContext context, String text, {VoidCallback? onpressed}) {
   return showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Enter Required Fields"),
+          title: Text(text),
           actions: [
             TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+                onPressed: onpressed ?? () => Navigator.pop(context),
                 child: Text("ok"))
           ],
         );
