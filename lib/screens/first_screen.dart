@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newtest/resources/auth_methods.dart';
 import 'package:newtest/util/ui_helper.dart';
 
 class First extends StatefulWidget {
@@ -26,10 +27,9 @@ class _FirstState extends State<First> {
                 child: Image.asset('assets/images/onboarding.jpg'),
               ),
               Ui_helper.Custom_btn(
-                text: "Start",
+                text: "Sign In With Gogogle",
                 onpressed: () {
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, '/signup', (route) => false);
+                  Auth_methods().Signin_with_Google(context);
                 },
                 padding: EdgeInsets.all(8.0),
               ),

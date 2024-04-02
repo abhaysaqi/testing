@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => Home_screen(),
         '/first': (context) => First(),
-        '/signin': (context) => Signin(),
-        '/signup': (context) => Signup(),
+        // '/signin': (context) => Signin(),
+        // '/signup': (context) => Signup(),
         '/video-call': (context) => Video_call_screen(),
       },
       home: const First(),
