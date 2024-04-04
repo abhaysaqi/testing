@@ -11,7 +11,7 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 final class Auth_methods {
   User get user => _auth.currentUser!;
   Signin_with_Google(BuildContext context) async {
-    bool response = false;
+    bool res = false;
     try {
       final GoogleSignInAccount? google_user = await GoogleSignIn().signIn();
       final GoogleSignInAuthentication? google_auth =
@@ -29,7 +29,7 @@ final class Auth_methods {
             'profilePhoto': user.photoURL,
           });
         }
-        response = true;
+        res = true;
         Custom_alert(context, "Successfully signed in!");
         Navigator.pushReplacementNamed(context, '/home');
       }

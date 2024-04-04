@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:newtest/firebase_options.dart';
+import 'package:newtest/resources/check_user.dart';
 import 'package:newtest/screens/first_screen.dart';
 import 'package:newtest/screens/home_screen.dart';
 import 'package:newtest/screens/signin.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         // '/signup': (context) => Signup(),
         '/video-call': (context) => Video_call_screen(),
       },
-      home: const First(),
+      home: CheckUser(),
     );
   }
 }
